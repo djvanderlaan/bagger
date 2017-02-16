@@ -1,0 +1,10 @@
+*.swp
+*.swo
+bin/parse_gem
+bin/parse_num
+bin/parse_opr
+bin/parse_pnd
+bin/parse_vbo
+bin/parse_wpl
+inspire
+
