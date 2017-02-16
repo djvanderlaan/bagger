@@ -45,7 +45,7 @@ download:
 	rm -f inspire/*.xml
 	unzip inspire/inspireadressen.zip -d inspire
 
-csv: nummeraanduiding openbareruimte panden verblijfsobjecten
+csv: nummeraanduiding openbareruimte panden verblijfsobjecten woonplaatsen gemeentes
 
 nummeraanduiding:
 	if [ ! -d inspire/num ]; \
