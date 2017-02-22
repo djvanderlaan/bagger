@@ -9,7 +9,7 @@ Code for downloading the Dutch Buildings Register (*Basisadministratie Gebouwen*
 
 The programmes to convert the XML-files from the BAG to CSV-format are written
 in C++ and need to be compiled. In order to compile the programmes libxml2 and
-libgdal need to be installed. Under Ubuntie this can be done using:
+libgdal need to be installed. Under Ubuntu this can be done using:
 
 ```
 sudo apt install libxml2-dev libgdal-dev
@@ -27,7 +27,7 @@ make build
 make download
 ```
 
-Should download the BAG and
+should download the BAG and
 
 ```
 make csv 
@@ -48,3 +48,4 @@ eind\_geldigheid   | date     | end date of validity; often empty
 geometrie\_wkt     | string   | polygon of building in WKT format (rijksdriehoek coordinates)
 x                  | double   | x coordinate of centroid of building (rijksdriehoek)
 y                  | double   | y coordinate
+
