@@ -39,7 +39,7 @@ should convert the XML-files to CSV-format. This generates a number of CSV-files
 **`data/panden.csv`**
 
 Variable           | Type     | Description
----------------------------------------------------------------------------------------------
+-------------------|----------|--------------------------------------------------------------
 id                 | string   | id of building
 bouwjaar           | integer  | year built
 pandstatus         | string   | status of building
