@@ -103,7 +103,7 @@ geometrie\_wkt       | string   | polygon of town in WKT format (rijksdriehoek c
 x                    | double   | x coordinate of centroid (rijksdriehoek)
 y                    | double   | y coordinate of centroid (rijksdriehoek)
 
-### data/gemeente\_woonplaats.csv ### 
+### data/gemeente\_woonplaats.csv ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
