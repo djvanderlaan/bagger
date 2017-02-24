@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -d data]
+if [ ! -d data ]
 then
   mkdir data
 fi

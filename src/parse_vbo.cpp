@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
     std::string filename(argv[1]);
     if (filename == "--header") {
       std::cout << "\"id\";\"gebruiksdoel\";\"oppervlakte\";\"status\";" << 
-        "\"hoofdadres\";\"begin_geldigheid\";\"eind_geldigheid\";" << 
+        "\"hoofdadres\";\"pand\";\"begin_geldigheid\";\"eind_geldigheid\";" << 
         "\"geometrie_wkt\";\"x\";\"y\"" << std::endl;
       return 0;
     } else doc = xmlReadFile(argv[1], NULL, 0);
@@ -43,6 +43,11 @@ int main(int argc, char **argv) {
       if (hfdaddr) {
         std::cout << '"' << get_data(hfdaddr->children, "identificatie") << '"' << ';';
       }
+    }
+    // lees gerelateerde pand
+    xmlNode* pand = find_first(node->children, "gerelateerdPand");
+    if (pand) {
+      std::cout << '"' << get_data(pand->children, "identificatie") << '"' << ';';
     }
     // geldigheid
     xmlNode* geld = find_first(node->children, "tijdvakgeldigheid");
