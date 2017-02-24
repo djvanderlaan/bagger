@@ -72,6 +72,7 @@ gebruiksdoel         | string   | use goal
 oppervlakte          | integer  | area (square metres)
 status               | string   | status
 hoofdadres           | string   | id of main address (links to ?)
+pand                 | string   | id of related building (should link to id in panden.csv)
 begin\_geldigheid    | date     | start date of validity record (format: `2016123100000000000`)
 eind\_geldigheid     | date     | end date of validity; often empty
 geometrie\_wkt       | string   | coordinate in WKT format (rijksdriehoek coordinates)
