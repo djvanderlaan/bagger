@@ -7,6 +7,7 @@
 #include <gdal/ogr_geometry.h>
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include <unistd.h>
 
 std::string xml_to_string(const xmlChar* str) {
@@ -38,7 +39,8 @@ xmlNode* find_first_child(xmlNode* node, const std::string& name) {
   return NULL;
 }
 
-std::string get_data(xmlNode* node, const std::string& name, bool depth_first = true) {
+std::string get_data(xmlNode* node, const std::string& name, bool depth_first = true, 
+    bool clean = true) {
   xmlNode* res = NULL;
   if (depth_first) {
     res = find_first(node, name);
@@ -46,7 +48,13 @@ std::string get_data(xmlNode* node, const std::string& name, bool depth_first = 
     res = find_first_child(node, name);
   }
   if (res == NULL) return std::string("");
-  return xml_to_string(res->children->content);
+  std::string result = xml_to_string(res->children->content);
+  if (clean) {
+    // remove newlines from string
+    std::replace(result.begin(), result.end(), '\n', ' ');
+  }
+
+  return result;
 }
 
 
