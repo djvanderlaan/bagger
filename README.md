@@ -37,7 +37,7 @@ should convert the XML-files to CSV-format. This generates a number of CSV-files
 
 ## Description of CSV files ##
 
-### data/panden.csv ###
+### data/panden.csv: buildings ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
@@ -50,7 +50,7 @@ geometrie\_wkt       | string   | polygon of building in WKT format (rijksdrieho
 x                    | double   | x coordinate of centroid of building (rijksdriehoek)
 y                    | double   | y coordinate
 
-### data/openbareruimte.csv ###
+### data/openbareruimte.csv: public space (e.g. streets) ###
 
 Stores public spaces, e.g. streets, squares, roards. 
 
@@ -63,7 +63,7 @@ woonplaats           | integer  | town (links to id in woonplaatsen.csv)
 begin\_geldigheid    | date     | start date of validity record (format: `2016123100000000000`)
 eind\_geldigheid     | date     | end date of validity; often empty
 
-### data/verblijfsobjecten.csv ###
+### data/verblijfsobjecten.csv: dwellings ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
@@ -71,15 +71,15 @@ id                   | string   | id of use object (numeric; but too long (16 di
 gebruiksdoel         | string   | use goal
 oppervlakte          | integer  | area (square metres)
 status               | string   | status
-hoofdadres           | string   | id of main address (links to ?)
-pand                 | string   | id of related building (should link to id in panden.csv)
+hoofdadres           | string   | id of main address (links to id in nummeraanduidingen.csv)
+pand                 | string   | id of related building (links to id in panden.csv)
 begin\_geldigheid    | date     | start date of validity record (format: `2016123100000000000`)
 eind\_geldigheid     | date     | end date of validity; often empty
 geometrie\_wkt       | string   | coordinate in WKT format (rijksdriehoek coordinates)
 x                    | double   | x coordinate of centroid (rijksdriehoek)
 y                    | double   | y coordinate of centroid (rijksdriehoek)
 
-### data/nummeraanduidingen.csv ###
+### data/nummeraanduidingen.csv: addresses (postcode + addres number) ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
@@ -91,7 +91,7 @@ openbareruimte       | string   | id of corresponding public space (links to id 
 begin\_geldigheid    | date     | start date of validity record (format: `2016123100000000000`)
 eind\_geldigheid     | date     | end date of validity; often empty
 
-### data/woonplaatsen.csv ###
+### data/woonplaatsen.csv: towns ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
@@ -104,7 +104,7 @@ geometrie\_wkt       | string   | polygon of town in WKT format (rijksdriehoek c
 x                    | double   | x coordinate of centroid (rijksdriehoek)
 y                    | double   | y coordinate of centroid (rijksdriehoek)
 
-### data/gemeente\_woonplaats.csv ###
+### data/gemeente\_woonplaats.csv: municipalities ###
 
 Variable             | Type     | Description
 ---------------------|----------|--------------------------------------------------------------
