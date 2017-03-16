@@ -1,17 +1,25 @@
 #!/bin/bash
 
-if [ ! -d data ]
+if [ -z "$BAGGER_OUTPUTDIR" ]
 then
-  mkdir data
+  export BAGGER_OUTPUTDIR="data"
 fi
 
-rm -f data/gemeente_woonplaats.csv
+echo "Exporting CSV to $BAGGER_OUTPUTDIR"
 
-./bin/parse_gem --header > data/gemeente_woonplaats.csv
+if [ ! -d "$BAGGER_OUTPUTDIR" ]
+then
+  mkdir --parents "$BAGGER_OUTPUTDIR"
+  echo "Creating $BAGGER_OUTPUTDIR"
+fi
+
+rm -f "$BAGGER_OUTPUTDIR/gemeente_woonplaats.csv"
+
+./bin/parse_gem --header > "$BAGGER_OUTPUTDIR/gemeente_woonplaats.csv"
 
 for file in inspire/gem/*.xml
 do
   echo "Processing $file"
-  cat $file | ./bin/parse_gem >> data/gemeente_woonplaats.csv
+  cat $file | ./bin/parse_gem >> "$BAGGER_OUTPUTDIR/gemeente_woonplaats.csv"
 done
 

@@ -33,7 +33,14 @@ should download the BAG and
 make csv 
 ```
 
-should convert the XML-files to CSV-format. This generates a number of CSV-files. 
+should convert the XML-files to CSV-format. This generates a number of
+CSV-files.  By default these are exported to the folder `./data`. However, this
+can be changed using the environment variable `BAGGER_OUTPUTDIR`. For example
+
+```
+export BAGGER_OUTPUTDIR=~/bag
+make csv
+```
 
 ## Description of CSV files ##
 

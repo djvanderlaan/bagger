@@ -1,17 +1,25 @@
 #!/bin/bash
 
-if [ ! -d data]
+if [ -z "$BAGGER_OUTPUTDIR" ]
 then
-  mkdir data
+  export BAGGER_OUTPUTDIR="data"
 fi
 
-rm -f data/panden.csv
+echo "Exporting CSV to $BAGGER_OUTPUTDIR"
 
-./bin/parse_pnd --header > data/panden.csv
+if [ ! -d "$BAGGER_OUTPUTDIR" ]
+then
+  mkdir --parents "$BAGGER_OUTPUTDIR"
+  echo "Creating $BAGGER_OUTPUTDIR"
+fi
+
+rm -f "$BAGGER_OUTPUTDIR/panden.csv"
+
+./bin/parse_pnd --header > "$BAGGER_OUTPUTDIR/panden.csv"
 
 for file in inspire/pnd/*.xml
 do
   echo "Processing $file"
-  cat $file | ./bin/parse_pnd >> data/panden.csv
+  cat $file | ./bin/parse_pnd >> "$BAGGER_OUTPUTDIR/panden.csv"
 done
 

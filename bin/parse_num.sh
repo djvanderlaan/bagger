@@ -1,17 +1,25 @@
 #!/bin/bash
 
-if [ ! -d data ]
+if [ -z "$BAGGER_OUTPUTDIR" ]
 then
-  mkdir data
+  export BAGGER_OUTPUTDIR="data"
 fi
 
-rm -f data/nummeraanduidingen.csv
+echo "Exporting CSV to $BAGGER_OUTPUTDIR"
 
-./bin/parse_num --header > data/nummeraanduidingen.csv
+if [ ! -d "$BAGGER_OUTPUTDIR" ]
+then
+  mkdir --parents "$BAGGER_OUTPUTDIR"
+  echo "Creating $BAGGER_OUTPUTDIR"
+fi
+
+rm -f "$BAGGER_OUTPUTDIR/nummeraanduidingen.csv"
+
+./bin/parse_num --header > "$BAGGER_OUTPUTDIR/nummeraanduidingen.csv"
 
 for file in inspire/num/*.xml
 do
   echo "Processing $file"
-  cat $file | ./bin/parse_num >> data/nummeraanduidingen.csv
+  cat $file | ./bin/parse_num >> "$BAGGER_OUTPUTDIR/nummeraanduidingen.csv"
 done
 
