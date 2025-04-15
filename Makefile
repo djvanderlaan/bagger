@@ -29,7 +29,10 @@ clean:
 	rm bin/parse_vbo bin/parse_opr bin/parse_num bin/parse_pnd
 
 
-INSPIRE_URL=http://geodata.nationaalgeoregister.nl/inspireadressen/extract/inspireadressen.zip
+#INSPIRE_URL=http://geodata.nationaalgeoregister.nl/inspireadressen/extract/inspireadressen.zip
+INSPITE_URL=https://service.pdok.nl/lv/bag/atom/downloads/lvbag-extract-nl.zip
+      
+      
 
 download:
 	if [ ! -d inspire ]; \

@@ -23,27 +23,28 @@ int main(int argc, char **argv) {
 
   xmlNode* root = xmlDocGetRootElement(doc);
 
-  xmlNode* data = find_first(root->children, "LVC-product");
+  xmlNode* stand = find_first(root->children, "stand");
+  xmlNode* node = 0;
 
-  xmlNode* node = find_first(root->children, "OpenbareRuimte");
+  while(stand = find_first(stand, "stand")) {
+    node = find_first(stand->children, "OpenbareRuimte");
 
-  while(node = find_first(node, "OpenbareRuimte")) {
     std::cout << '"' << get_data(node->children, "identificatie") << '"' << ';';
-    std::cout << '"' << get_data(node->children, "openbareRuimteNaam") << '"' << ';';
-    std::cout << '"' << get_data(node->children, "openbareRuimteType") << '"' << ';';
+    std::cout << '"' << get_data(node->children, "naam") << '"' << ';';
+    std::cout << '"' << get_data(node->children, "type") << '"' << ';';
 
-    xmlNode* openb = find_first(node->children, "gerelateerdeWoonplaats");
+    xmlNode* openb = find_first(node->children, "ligtIn");
     if (openb) {
-      std::cout << '"' << get_data(openb->children, "identificatie") << '"' << ';';
+      std::cout << '"' << get_data(openb->children, "WoonplaatsRef") << '"' << ';';
     }
 
-    xmlNode* geld = find_first(node->children, "tijdvakgeldigheid");
+    xmlNode* geld = find_first(node->children, "Voorkomen");
     if (geld) {
-      std::cout << '"' << get_data(geld->children, "begindatumTijdvakGeldigheid") << '"' << ';';
-      std::cout << '"' << get_data(geld->children, "einddatumTijdvakGeldigheid") << '"';
+      std::cout << '"' << get_data(geld->children, "beginGeldigheid") << '"' << ';';
+      std::cout << '"' << get_data(geld->children, "eindGeldigheid") << '"';
     }
     std::cout << "\n";
-    node = node->next;
+    stand = stand->next;
   }
 
   xmlFreeDoc(doc);

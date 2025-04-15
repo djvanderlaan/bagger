@@ -23,33 +23,37 @@ int main(int argc, char **argv) {
 
   xmlNode* root = xmlDocGetRootElement(doc);
 
-  xmlNode* data = find_first(root->children, "LVC-product");
+  xmlNode* stand = find_first(root->children, "stand");
+  xmlNode* node = 0;
 
-  xmlNode* node = find_first(root->children, "Woonplaats");
+  while(stand = find_first(stand, "stand")) {
 
-  while(node = find_first(node, "Woonplaats")) {
+    node = find_first(stand, "Woonplaats");
+
     std::cout << '"' << get_data(node->children, "identificatie") << '"' << ';';
-    std::cout << '"' << get_data(node->children, "woonplaatsNaam") << '"' << ';';
-    std::cout << '"' << get_data(node->children, "woonplaatsStatus") << '"' << ';';
+    std::cout << '"' << get_data(node->children, "naam") << '"' << ';';
+    std::cout << '"' << get_data(node->children, "status") << '"' << ';';
 
-    xmlNode* geld = find_first(node->children, "tijdvakgeldigheid");
+    // geldigheid
+    xmlNode* geld = find_first(node->children, "Voorkomen");
     if (geld) {
-      std::cout << '"' << get_data(geld->children, "begindatumTijdvakGeldigheid") << '"' << ';';
-      std::cout << '"' << get_data(geld->children, "einddatumTijdvakGeldigheid") << '"' << ';';
+      std::cout << '"' << get_data(geld->children, "beginGeldigheid") << '"' << ';';
+      std::cout << '"' << get_data(geld->children, "eindGeldigheid") << '"' << ';';
     }
 
-    xmlNode* geom = find_first(node->children, "woonplaatsGeometrie");
+    // geometry
+    xmlNode* geom = find_first(node->children, "Polygon");
     if (geom) {
       // The geometry is encoded in GML; first extract the GML
       xmlBufferPtr buffer = xmlBufferCreate();
-      int size = xmlNodeDump(buffer, doc, geom->children, 0, 0);
+      int size = xmlNodeDump(buffer, doc, geom, 0, 0);
       std::string gml = xml_to_string(buffer->content);
       // Convert the GML to Well-known Text format using OGR
       OGRGeometryH res = OGR_G_CreateFromGML(gml.c_str());
       char* oglbuffer = 0;
       OGR_G_ExportToWkt(res, &oglbuffer);
       std::string wkt(oglbuffer);
-      OGRFree(oglbuffer);
+      CPLFree(oglbuffer);
       std::cout << '"' << wkt << '"' << ';';
       // Extract coordinate of centroid
       OGRPoint centroid;
@@ -61,7 +65,7 @@ int main(int argc, char **argv) {
     }
 
     std::cout << "\n";
-    node = node->next;
+    stand = stand->next;
   }
 
   xmlFreeDoc(doc);

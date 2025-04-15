@@ -23,7 +23,6 @@ int main(int argc, char **argv) {
 
   xmlNode* root = xmlDocGetRootElement(doc);
 
-  xmlNode* data = find_first(root->children, "LVC-product");
 
   xmlNode* node = find_first(root->children, "GemeenteWoonplaatsRelatie");
 
