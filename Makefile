@@ -30,7 +30,7 @@ clean:
 
 
 #INSPIRE_URL=http://geodata.nationaalgeoregister.nl/inspireadressen/extract/inspireadressen.zip
-INSPITE_URL=https://service.pdok.nl/lv/bag/atom/downloads/lvbag-extract-nl.zip
+INSPIRE_URL=https://service.pdok.nl/lv/bag/atom/downloads/lvbag-extract-nl.zip
       
       
 
