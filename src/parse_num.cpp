@@ -33,19 +33,19 @@ int main(int argc, char **argv) {
     std::cout << '"' << get_data(node->children, "identificatie") << '"' << ';';
     std::cout << '"' << get_data(node->children, "postcode") << '"' << ';';
     std::cout << '"' << get_data(node->children, "huisnummer") << '"' << ';';
-    std::cout << '"' << get_data(node->children, "huisletter") << '"' << ';';
+    std::cout << '"' << get_data(node->children, "huisletter") << '"';
     //std::cout << '"' << get_data(node->children, "status") << '"' << ';';
 
     xmlNode* ligtaan = find_first(node->children, "ligtAan");
     if (ligtaan) {
-      std::cout << '"' << get_data(ligtaan->children, "OpenbareRuimteRef") << '"' << ';';
+      std::cout << ';'<< '"' << get_data(ligtaan->children, "OpenbareRuimteRef") << '"';
     }
 
     // geldigheid
     xmlNode* geld = find_first(node->children, "Voorkomen");
     if (geld) {
-      std::cout << '"' << get_data(geld->children, "beginGeldigheid") << '"' << ';';
-      std::cout << '"' << get_data(geld->children, "eindGeldigheid") << '"' << ';';
+      std::cout << ';' << '"' << get_data(geld->children, "beginGeldigheid") << '"';
+      std::cout << ';' << '"' << get_data(geld->children, "eindGeldigheid") << '"';
     }
     std::cout << "\n";
     stand = stand->next;

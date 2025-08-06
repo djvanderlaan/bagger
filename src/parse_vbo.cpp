@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
       std::cout << '"' << centroid.getX() << '"' << ';';
       std::cout << '"' << centroid.getY() << '"';
     } else {
-      std::cout << "not found";
+      std::cout << "\"\";\"\";\"\"";
     }
 
     std::cout << "\n";
